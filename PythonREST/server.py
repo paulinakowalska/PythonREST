@@ -14,6 +14,13 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         self._set_headers()
         self.wfile.write("got your message. thank you!".encode())
 
+    def do_PUT(self):
+        length = int(self.headers['Content-Length'])
+        content = self.rfile.read(length)
+        self._set_headers()
+        self.wfile.write("file successfully received".encode())
+        print(content)
+
 IP = "192.168.0.3"
 PORT = 8081
 
