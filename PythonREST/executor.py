@@ -2,9 +2,13 @@ import os
 import PythonREST.compiler
 
 
+result = dict()
+
+
 def execute_file(file_path):
     """
-    executes file from given path.
+    executes file from given path and saves output.
+    use get_result() to receive program output
     :param file_path
     :return:
         file executed: 1
@@ -13,11 +17,9 @@ def execute_file(file_path):
     if file_path and os.path.isfile(file_path):
         if PythonREST.compiler.compile_file(file_path):
             file = open(file_path)
-            result = dict()
             print("executing file...")
             exec(file.read(), dict(), result)
-            print("file executed. output:", result["result"])
-            send_result(result["result"])
+            print("file executed. use get_result() to get program output")
             file.close()
             return 1
         else:
@@ -28,9 +30,9 @@ def execute_file(file_path):
         return 0
 
 
-def send_result(result):
+def get_result():
     """
-    :param result:
-    Sends result back to client.
+    gets output from executed file
+    :return: program output
     """
-    # TODO implement this method
+    return result["result"]
