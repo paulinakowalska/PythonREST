@@ -1,6 +1,6 @@
 import socketserver
 
-import PythonREST.executor
+from PythonREST import executor
 import http.server
 
 
@@ -32,5 +32,5 @@ with socketserver.TCPServer((IP, PORT), Handler) as httpd:
 
 # TODO fix unreachable code below
 file_path = "D:\\Hello.py"
-PythonREST.executor.execute_file(file_path)
+executor.execute_file(file_path)
 
