@@ -13,8 +13,12 @@ def execute_file(file_path):
     if file_path and os.path.isfile(file_path):
         if PythonREST.compiler.compile_file(file_path):
             file = open(file_path)
-            print("executing file...\nfile output:")
-            exec(file.read())
+            result = dict()
+            print("executing file...")
+            exec(file.read(), dict(), result)
+            print("file executed. output:", result["result"])
+            send_result(result["result"])
+            file.close()
             return 1
         else:
             print("couldn't compile file")
