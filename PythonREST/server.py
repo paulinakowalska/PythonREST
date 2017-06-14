@@ -2,7 +2,7 @@ import socketserver
 
 from PythonREST import executor, compiler
 import http.server
-
+# import threading
 
 def run(IP, PORT):
     """
@@ -41,3 +41,11 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write("program has been executed successfully and returned ".__add__(str(result)).encode())
         else:
             self.wfile.write("file couldn't be compiled".encode())
+
+# a=1
+# while a==1:
+#     try:
+#         request_thread = threading.Thread(target=do_PUT, args=(self))
+#     except:
+#         print("wait for connection")
+

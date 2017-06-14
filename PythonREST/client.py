@@ -1,7 +1,8 @@
 import http.client
 import time
 
-IP = "192.168.0.3"
+# IP = "192.168.0.3"
+IP = "10.129.4.227"
 PORT = 8080
 file_path = "D:\\Hello.py"
 
