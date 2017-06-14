@@ -3,8 +3,9 @@ import time
 
 class Client:
 
-    # IP = "192.168.0.3"
-    IP = "192.168.56.1"
+    # IP = "192.168.0.3" #Piotrek
+    # IP = "192.168.56.1"
+    IP = " 192.168.43.213" #WOJTEK
     PORT = 8080
     file_path = "D:\\Hello.py"
 
