@@ -1,12 +1,12 @@
-import socketserver
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+from socketserver import ThreadingMixIn
 
 from PythonREST import executor, compiler
 # import executor, compiler
-import http.server
 # import threading
 
 
-class Server:
+class Server(ThreadingMixIn, HTTPServer):
 
     def run(self, IP, PORT):
         """
@@ -15,13 +15,12 @@ class Server:
         :param PORT: server's port to listen requests
         :return: None
         """
-        handler = MyHandler
-        with socketserver.TCPServer((IP, PORT), handler) as httpd:
-            print("server started.")
-            httpd.serve_forever()
+        server = Server((IP, PORT), MyHandler)
+        print("server started.")
+        server.serve_forever()
 
 
-class MyHandler(http.server.SimpleHTTPRequestHandler):
+class MyHandler(SimpleHTTPRequestHandler):
 
     def _set_headers(self):
         self.send_response(200)
@@ -42,14 +41,6 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         if 1 == 1:
             self.wfile.write("compilation successful\n".encode())
             result = executor.execute_program(content)
-            self.wfile.write("program has been executed successfully and returned ".__add__(str(result)).encode())
+            self.wfile.write("program has been executed successfully and returned: ".__add__(str(result)).encode())
         else:
             self.wfile.write("file couldn't be compiled".encode())
-
-# a=1
-# while a==1:
-#     try:
-#         request_thread = threading.Thread(target=do_PUT, args=(self))
-#     except:
-#         print("wait for connection")
-
