@@ -4,7 +4,8 @@ import time
 
 class Client:
 
-    IP = "192.168.0.3"
+    # IP = "192.168.0.3"
+    IP = "192.168.56.1"
     PORT = 8080
     file_path = "D:\\Hello.py"
 
