@@ -1,11 +1,12 @@
-from PythonREST import server, client, reporter
+#from PythonREST import server, client, reporter
+import server, client, reporter
 import threading
 
 
 class main():
 
     # IP = "192.168.0.3"
-    IP = "10.129.4.227"
+    IP = "10.129.9.247"
     PORT = 8080
     k = client.Client
     s = server.Server
