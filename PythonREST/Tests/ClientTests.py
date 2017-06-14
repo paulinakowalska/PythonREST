@@ -16,26 +16,27 @@ class Test_ClientTests(unittest.TestCase):
 
         self.assertEqual(result, True)
 
-    #def test_send_file(self):
+    def test_send_file(self):
 
-    #    IP = "192.168.0.3"
-    #    PORT = 8080
-    #    file_path = "D:\\Hello.py"
+        #to run test running server is required
+        cli = client.Client();
 
-    #    cli = client.Client();
+        PORT = cli.getServerPort()
+        IP = cli.getServerIP()
+        filePath = cli.getFilePath()
 
-    #    content = cli.load_file(file_path)
+        content = cli.load_file(filePath)
 
-    #    resp = cli.send_file("program1", content, IP, PORT)
+        resp = cli.send_file("program1", content, IP, PORT)
 
-    #    result = ''
+        result = ''
 
-    #    if resp:
-    #        result = True
-    #    else:
-    #        result = False
+        if resp:
+            result = True
+        else:
+            result = False
 
-    #    self.assertEqual(result, True)
+        self.assertEqual(result, True)
 
 
 if __name__ == '__main__':
