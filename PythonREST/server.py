@@ -4,17 +4,20 @@ from PythonREST import executor, compiler
 import http.server
 # import threading
 
-def run(IP, PORT):
-    """
-    starts server at given host and port
-    :param IP: host's IP to start server
-    :param PORT: server's port to listen requests
-    :return: None
-    """
-    handler = MyHandler
-    with socketserver.TCPServer((IP, PORT), handler) as httpd:
-        print("server started.")
-        httpd.serve_forever()
+
+class Server:
+
+    def run(self, IP, PORT):
+        """
+        starts server at given host and port
+        :param IP: host's IP to start server
+        :param PORT: server's port to listen requests
+        :return: None
+        """
+        handler = MyHandler
+        with socketserver.TCPServer((IP, PORT), handler) as httpd:
+            print("server started.")
+            httpd.serve_forever()
 
 
 class MyHandler(http.server.SimpleHTTPRequestHandler):
