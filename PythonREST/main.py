@@ -4,7 +4,7 @@ import threading
 
 class Main:
 
-    IP = "192.168.56.1"
+    IP = "192.168.43.92"
     # IP = "10.129.4.227"
     PORT = 8080
     k = client.Client
