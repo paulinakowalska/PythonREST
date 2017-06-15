@@ -1,17 +1,16 @@
 import http.client
+import os
 import time
 from PythonREST import config
 
 
 class Client:
-    # file_path = "D:\\Hello.py"
-    # file_path = "D:\\longTimeProgram1.py"
-    # file_path2 = "D:\\longTimeProgram2.py"
-    file1_path = "D:\\Piotrek\\workspace\\PythonREST\\PythonREST\\Programs\\anotherLongTimeProgram.py"
-    file2_path = "D:\\Piotrek\\workspace\\PythonREST\\PythonREST\\Programs\\example.py"
-    file3_path = "D:\\Piotrek\\workspace\\PythonREST\\PythonREST\\Programs\\fail.py"
-    file4_path = "D:\\Piotrek\\workspace\\PythonREST\\PythonREST\\Programs\\longTimeProgram.py"
-    file5_path = "D:\\Piotrek\\workspace\\PythonREST\\PythonREST\\Programs\\sum.py"
+    path = os.getcwd().__add__("\Programs\\")
+    file1_path = "{}{}".format(path, "anotherLongTimeProgram.py")
+    file2_path = "{}{}".format(path, "example.py")
+    file3_path = "{}{}".format(path, "fail.py")
+    file4_path = "{}{}".format(path, "longTimeProgram.py")
+    file5_path = "{}{}".format(path, "sum.py")
 
     @staticmethod
     def load_file(self, file_path):
