@@ -60,3 +60,5 @@ class MyHandler(SimpleHTTPRequestHandler):
         name = r.save_program(content)
         result = r.compare(name)
         self.wfile.write("\nfiles with same content actually saved on server:\n".__add__("\n".join(result)).encode())
+        if not result:
+            self.wfile.write("None".encode())
