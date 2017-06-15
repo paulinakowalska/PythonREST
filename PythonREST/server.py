@@ -1,13 +1,14 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from socketserver import ThreadingMixIn
 
-from PythonREST import executor, compiler
+from PythonREST import executor, compiler, reporter
+
+
 # import executor, compiler
 # import threading
 
 
 class Server(ThreadingMixIn, HTTPServer):
-
     def run(self, IP, PORT):
         """
         starts server at given host and port
@@ -21,7 +22,6 @@ class Server(ThreadingMixIn, HTTPServer):
 
 
 class MyHandler(SimpleHTTPRequestHandler):
-
     def _set_headers(self):
         self.send_response(200)
         self.send_header('content-type', 'text/html')
@@ -37,10 +37,18 @@ class MyHandler(SimpleHTTPRequestHandler):
         content = self.rfile.read(length)
         self._set_headers()
         self.wfile.write("file successfully received\n".encode())
-        # if compiler.compile_file(content):
-        if 1 == 1:
+
+        try:
+            compiler.compile_file(content)
             self.wfile.write("compilation successful\n".encode())
-            result = executor.execute_program(content)
+        except Exception as e:
+            self.wfile.write("compilation failed. Reason:".__add__(e.args).encode())
+
+        test, result = executor.execute_program(content)
+        if test:
             self.wfile.write("program has been executed successfully and returned: ".__add__(str(result)).encode())
         else:
-            self.wfile.write("file couldn't be compiled".encode())
+            self.wfile.write("program execution failed ".__add__(result).encode())
+
+        r = reporter.Reporter()
+        r.save_program(content)
