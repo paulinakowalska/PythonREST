@@ -1,7 +1,8 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from socketserver import ThreadingMixIn
 
-from PythonREST import executor, compiler, reporter
+#from PythonREST import executor, compiler, reporter
+import executor, compiler, reporter
 
 
 # import executor, compiler
@@ -40,7 +41,9 @@ class MyHandler(SimpleHTTPRequestHandler):
         self.wfile.write("file successfully received\n".encode())
 
         try:
-            compiler.compile_file(content)
+            c = compiler.Compiler()
+
+            c.compile_file(content)
             self.wfile.write("compilation successful\n".encode())
         except Exception as e:
             self.wfile.write("compilation failed. Reason:".__add__(e.args).encode())
