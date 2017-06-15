@@ -11,6 +11,5 @@ def compile_file(content):
     try:
         py_compile.compile(content)
         return 1
-    except Exception as e:
-        print("this file can not be compiled:", e.args)
+    except Exception:
         return 0
