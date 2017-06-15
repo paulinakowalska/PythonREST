@@ -1,20 +1,20 @@
-# import unittest, reporter
-import unittest
-from PythonREST import reporter
+import unittest, reporter
+#import unittest
+#from PythonREST import reporter
 
 
 class Test_ReporterTests(unittest.TestCase):
 
     def test_file_path_equals(self):
         r = reporter.Reporter()
-        path = r.get_file_path(r)
+        path = r.path
 
-        self.assertEqual(path, "/server/programs")
+        self.assertEqual(path, "/server/programs/")
 
     def test_directory_exists(self):
         r = reporter.Reporter()
         fakePath = "/server/fake"
-        isDirectoryExists = r.does_directory_exist(fakePath)
+        isDirectoryExists = r.does_directory_exist(self, fakePath)
 
         self.assertNotEqual(isDirectoryExists, True)
 

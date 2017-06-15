@@ -1,6 +1,6 @@
-# import unittest, client
-import unittest
-from PythonREST import client
+import unittest, client, config
+#import unittest
+#from PythonREST import client
 
 
 class Test_ClientTests(unittest.TestCase):
@@ -8,7 +8,9 @@ class Test_ClientTests(unittest.TestCase):
     def test_load_file(self):
 
         file_path = "D:\\Hello.py"
-        file = open(file_path)
+
+        cli = client.Client();
+        file = cli.load_file(self, file_path)
 
         result = ''
 
@@ -24,13 +26,13 @@ class Test_ClientTests(unittest.TestCase):
         # to run test running server is required
         cli = client.Client();
 
-        PORT = cli.getServerPort()
-        IP = cli.getServerIP()
-        filePath = cli.getFilePath()
+        PORT = config.PORT
+        IP = config.IP
+        filePath = "D:\\Hello.py"
 
-        content = cli.load_file(filePath)
+        content = cli.load_file(self, filePath)
 
-        resp = cli.send_file("program1", content, IP, PORT)
+        resp = cli.send_file(self, "program1", content, IP, PORT)
 
         result = ''
 

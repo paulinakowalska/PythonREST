@@ -9,7 +9,7 @@ class Test_CompilerTests(unittest.TestCase):
         file = open(file_path)
         content = file.read()
 
-        comp = compiler.Compiler()
+        comp = compiler.Compiler();
         result = comp.compile_file(content)
 
         self.assertEqual(1, result)
