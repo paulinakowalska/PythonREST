@@ -12,4 +12,3 @@ def execute_program(content):
         return 1, result["result"]
     except Exception as e:
         return 0, str(e.args)
-

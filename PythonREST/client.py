@@ -17,7 +17,7 @@ class Client:
     def load_file(self, file_path):
         """
         loads file content from given path"
-        :param file_path:
+        :param file_path: filepath to file
         :return: file content
         """
         file = open(file_path)
@@ -41,7 +41,7 @@ class Client:
     def run_client(self, id):
         """
         fakes client behavior with following steps:
-        1. loads file from built-in filepath
+        1. loads file from built-in filepath based on received id(1 or anything else)
         2. sends content of loaded file to server defined by built-in IP and PORT variables
         :return: None - prints received responses
         """

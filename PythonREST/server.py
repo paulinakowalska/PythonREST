@@ -23,13 +23,14 @@ class Server(ThreadingMixIn, HTTPServer):
 
 class MyHandler(SimpleHTTPRequestHandler):
     def _set_headers(self):
+        """sets headers"""
         self.send_response(200)
         self.send_header('content-type', 'text/html')
         self.end_headers()
 
     def do_PUT(self):
         """
-        handles PUT requests. reads received file. tries to compile it and gives response to client about compilation.
+        handles PUT requests. reads received file, tries to compile it and gives response to client about compilation.
         if compilation was successful executes received program and sends response to client with received output.
         :return: None - sends responds to client
         """
@@ -51,4 +52,6 @@ class MyHandler(SimpleHTTPRequestHandler):
             self.wfile.write("program execution failed ".__add__(result).encode())
 
         r = reporter.Reporter()
-        r.save_program(content)
+        name = r.save_program(content)
+        result = r.compare(name)
+        self.wfile.write("\nfiles with same content actually saved on server:\n".__add__("\n".join(result)).encode())

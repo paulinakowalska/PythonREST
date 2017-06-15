@@ -1,7 +1,6 @@
 import os
 from builtins import staticmethod
 import filecmp
-from fnmatch import fnmatch
 
 
 class Reporter:
@@ -11,8 +10,8 @@ class Reporter:
     def save_program(self, content):
         """
         creates new file with a given content at server's path containing programs
-        :param content: programs code
-        :return: None
+        :param content: program's code
+        :return: name of saved file
         """
         self.create_file_directory_if_not_exists(self, self.path)
 
@@ -21,13 +20,21 @@ class Reporter:
         file = open(self.path.__add__(name), 'w')
         file.write(content.decode())
         file.close()
-        self.compare(name)
+        return name
 
     def compare(self, name):
+        """
+        compares content of file with given name from built-in directory to another file contents in this directory
+        :param name: name of file to compare
+        :return: list of file names with same content
+        """
+        result = []
         for i in (os.listdir(self.path)):
             if i != name:
                 comparison = filecmp.cmp(self.path.__add__(i), self.path.__add__(name), shallow=False)
-                print("comparing {} and {} result: ".format(i, name), comparison)
+                if comparison:
+                    result.append(i)
+        return result
 
     @staticmethod
     def get_file_path(self):
