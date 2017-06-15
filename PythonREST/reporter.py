@@ -12,7 +12,7 @@ class Reporter:
         :param content: programs code
         :return: None
         """
-        self.create_file_directory_if_not_exists(self.path)
+        self.create_file_directory_if_not_exists(self, self.path)
 
         files = len(os.listdir(self.path))
         file = open(self.path.__add__("/program".__add__(str(files+1)).__add__(".py")), 'w')
