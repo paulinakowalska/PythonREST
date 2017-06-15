@@ -1,14 +1,12 @@
 import http.client
 import time
+from PythonREST import config
 
 
 class Client:
 
-    # IP = "192.168.43.92"
-    IP = "192.168.0.3"
-    # IP = "192.168.56.1"
-
-    PORT = 8080
+    IP = config.IP
+    PORT = config.PORT
     # file_path = "D:\\Hello.py"
     file_path = "D:\\longTimeProgram1.py"
     file_path2 = "D:\\longTimeProgram2.py"

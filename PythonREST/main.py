@@ -1,19 +1,13 @@
-from PythonREST import server, client, reporter
+from PythonREST import server, client, config
 import threading
 
 
 class Main:
 
-    # IP = "192.168.43.92"
-    # IP = "10.129.4.227"
-    IP = "192.168.0.3"
-
-    PORT = 8080
+    IP = config.IP
+    PORT = config.PORT
     k = client.Client
     s = server.Server
-
-    # client = threading.Thread(target=client.run_client, args=self, name="client")
-    # server = threading.Thread(target=server.run, args=(IP, PORT), name="server")
 
     def start(self):
         print("starting program")
