@@ -1,4 +1,6 @@
-import unittest, client
+# import unittest, client
+import unittest
+from PythonREST import client
 
 class Test_ClientTests(unittest.TestCase):
 
@@ -18,7 +20,7 @@ class Test_ClientTests(unittest.TestCase):
 
     def test_send_file(self):
 
-        #to run test running server is required
+        # to run test running server is required
         cli = client.Client();
 
         PORT = cli.getServerPort()

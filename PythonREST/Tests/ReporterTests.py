@@ -1,4 +1,7 @@
-import unittest, reporter
+# import unittest, reporter
+import unittest
+from PythonREST import reporter
+
 
 class Test_ReporterTests(unittest.TestCase):
 
