@@ -2,6 +2,7 @@
 import unittest
 from PythonREST import client
 
+
 class Test_ClientTests(unittest.TestCase):
 
     def test_load_file(self):

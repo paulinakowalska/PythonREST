@@ -1,7 +1,10 @@
 import os
+from builtins import staticmethod
 
 
 class Reporter:
+
+    path = "/server/programs"
 
     def save_program(self, content):
         """
@@ -9,28 +12,20 @@ class Reporter:
         :param content: programs code
         :return: None
         """
+        self.create_file_directory_if_not_exists(self.path)
 
-        path = "/server/programs"
-        
-        self.create_file_directory_if_not_exists(path)
-
-        files = len(os.listdir(path))
-        file = open(path.__add__("/program".__add__(str(files+1)).__add__(".py")), 'w')
+        files = len(os.listdir(self.path))
+        file = open(self.path.__add__("/program".__add__(str(files+1)).__add__(".py")), 'w')
         file.write(content.decode())
 
+    @staticmethod
     def get_file_path(self):
+        return self.path
 
-        path = "/server/programs"
-
-        return path
-
+    @staticmethod
     def create_file_directory_if_not_exists(self, path):
         if not os.path.exists(path):
             os.makedirs(path)
 
-    def is_directory_exists(self, path):
-
+    def does_directory_exist(self, path):
         return os.path.exists(path)
-
-
-
