@@ -1,5 +1,6 @@
 import os
 
+
 class Reporter:
 
     def save_program(self, content):
@@ -17,7 +18,7 @@ class Reporter:
         file = open(path.__add__("/program".__add__(str(files+1)).__add__(".py")), 'w')
         file.write(content.decode())
 
-    def get_file_path(content):
+    def get_file_path(self):
 
         path = "/server/programs"
 
