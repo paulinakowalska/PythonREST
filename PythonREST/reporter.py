@@ -20,17 +20,14 @@ class Reporter:
         name = "program".__add__(str(files+1).__add__(".py"))
         file = open(self.path.__add__(name), 'w')
         file.write(content.decode())
+        file.close()
         self.compare(name)
 
     def compare(self, name):
         for i in (os.listdir(self.path)):
             if i != name:
-                # comparision = open(self.path.__add__(i)).read() == open(self.path.__add__(name)).read()
-                # comparision = fnmatch(open(self.path.__add__(i)).read(), open(self.path.__add__(name)).read())
-                print("comparing {} and {} result: ".format(i, name), comparision)
-
-
-
+                comparison = filecmp.cmp(self.path.__add__(i), self.path.__add__(name), shallow=False)
+                print("comparing {} and {} result: ".format(i, name), comparison)
 
     @staticmethod
     def get_file_path(self):
